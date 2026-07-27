@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteShell } from "./components/site-shell";
 import { getContentItems } from "./lib/content";
+import { getHeroImageUrl } from "../lib/hero";
 import { getYouTubeEmbedUrl } from "./lib/video-utils";
+import HeroPortrait from "./components/hero-portrait";
 
 export const metadata: Metadata = {
   title: "Arsal | DTC Ads Video Editor",
@@ -13,6 +15,7 @@ const brandLogos = ["RESILIA", "RYZE", "NOVA", "PULSE"];
 
 export default async function HomePage() {
   const introVideos = await getContentItems("home_intro_videos");
+  const heroImage = getHeroImageUrl();
 
   return (
     <SiteShell>
@@ -51,13 +54,21 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-[#0A2540]/10 bg-[#0A2540] p-8 text-white shadow-[0_30px_90px_rgba(10,37,64,0.22)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#fda4af]">What I do</p>
-            <h2 className="mt-4 text-3xl font-bold">Video editing for DTC ad campaigns that need speed, clarity, and punch.</h2>
-            <div className="mt-8 space-y-4 text-sm leading-7 text-[#e5e7eb]">
-              <p>• UGC-style cuts, paid social ads, launch edits, and short-form motion</p>
-              <p>• Fast turnaround with a sharp eye for hooks, pacing, and retention</p>
-              <p>• Built around conversion-focused creative for modern brands</p>
+          <div className="relative flex items-center justify-center">
+            <div className="hero-blob" aria-hidden />
+            <div className="rounded-[2rem] p-4 hero-portrait-wrapper bg-transparent border-0 shadow-none">
+              <HeroPortrait src={heroImage || "/window.svg"} alt="Portrait" />
+            </div>
+
+            {/* floating badge bubbles positioned around the portrait */}
+            <div className="hero-bubble small bubble-float bubble-delay-1" style={{ left: "8%", top: "6%" }}>
+              <span className="dot" style={{ background: "#7c3aed" }} />UGC-style hooks
+            </div>
+            <div className="hero-bubble purple bubble-float bubble-delay-2" style={{ right: "6%", top: "-6%" }}>
+              ⚡ Fast turnaround — 24–48h
+            </div>
+            <div className="hero-bubble bubble-float bubble-delay-3" style={{ right: "-6%", bottom: "-6%" }}>
+              ★★★★★ Conversion-first edits
             </div>
           </div>
         </div>

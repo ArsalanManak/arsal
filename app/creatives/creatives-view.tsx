@@ -96,10 +96,6 @@ export function CreativesView({
                           Invalid video URL
                         </div>
                       )}
-                      <div className="p-5">
-                        <h3 className="text-lg font-semibold text-[#0A2540]">{item.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-[#6b7280]">{item.caption}</p>
-                      </div>
                     </div>
                   );
                 })

@@ -27,6 +27,7 @@ export default function AdminPage() {
     static_ads: [],
     video_ads: [],
   });
+  const [heroUrl, setHeroUrl] = useState("");
   const [formState, setFormState] = useState<Record<ContentType, ReturnType<typeof getInitialState>>>({
     home_intro_videos: getInitialState(),
     static_ads: getInitialState(),
@@ -52,6 +53,16 @@ export default function AdminPage() {
       }
 
       setItems((prev) => ({ ...prev, [type.key]: data.items || [] }));
+    }
+
+    try {
+      const res = await fetch("/api/hero-image");
+      if (res.ok) {
+        const d = await res.json();
+        setHeroUrl(d.url || "");
+      }
+    } catch (err) {
+      /* ignore */
     }
   };
 
@@ -223,6 +234,30 @@ export default function AdminPage() {
               {type.label}
             </button>
           ))}
+        </div>
+
+        <div className="mt-6 rounded-[1.5rem] border border-[#0A2540]/10 bg-white p-6">
+          <h3 className="text-lg font-semibold">Hero image (Cloudinary URL)</h3>
+          <p className="mt-2 text-sm text-[#6b7280]">Paste the Cloudinary (or any image) URL to use in the homepage hero.</p>
+          <div className="mt-3 flex items-center gap-3">
+            <input value={heroUrl} onChange={(e) => setHeroUrl(e.target.value)} placeholder="https://res.cloudinary.com/.../image.jpg" className="w-full rounded-2xl border border-[#0A2540]/15 bg-[#FAFAFA] px-4 py-3" />
+            <button onClick={async () => {
+              try {
+                setStatus('Saving hero image...');
+                const res = await fetch('/api/hero-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: heroUrl }) });
+                if (res.ok) {
+                  setStatus('Hero image saved. Refresh homepage to see change.');
+                } else {
+                  setStatus('Save failed.');
+                }
+              } catch (err) {
+                setStatus('Save failed.');
+              }
+            }} className="rounded-full bg-[#0A2540] px-4 py-2 text-white">Save</button>
+          </div>
+          <div className="mt-4">
+            <img src={heroUrl || '/window.svg'} alt="hero preview" className="hero-portrait-img w-48" style={{ background: 'transparent' }} />
+          </div>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
