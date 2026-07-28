@@ -24,11 +24,24 @@ const aiTools = [
   "VEO 3",
   "ElevenLabs",
   "SUNO",
+  "Claude",
+  "Gemini",
+  "ChatGPT",
 ];
 
 const brands = [
-  { name: "RESILIA", color: "#D62828", description: "Performance-driven DTC brand" },
-  { name: "RYZE", color: "#0A2540", description: "Innovative e-commerce solutions" }
+  { 
+    name: "RESILIA", 
+    color: "#D62828", 
+    description: "Performance-driven DTC brand",
+    image: "https://m.media-amazon.com/images/I/71Em1F-11PL.jpg"
+  },
+  { 
+    name: "RYZE", 
+    color: "#0A2540", 
+    description: "Innovative e-commerce solutions",
+    image: "https://target.scene7.com/is/image/Target/GUEST_86434910-89e1-4d12-9c55-8d9327b15460"
+  }
 ];
 
 export const metadata: Metadata = {
@@ -77,27 +90,30 @@ export default function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-[#0A2540]/10 bg-[#FAFAFA] p-8">
-            <h2 className="text-2xl font-bold text-[#0A2540]">Software skills</h2>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {skills.map((skill) => (
-                <span key={skill} className="rounded-full bg-[#0A2540] px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-110 hover:bg-[#D62828]">
-                  {skill}
-                </span>
-              ))}
-            </div>
+        <div className="rounded-[2rem] border border-[#0A2540]/10 bg-[#FAFAFA] p-8 animate-slide-in-left hover:shadow-lg transition-shadow">
+          <h2 className="text-2xl font-bold text-[#0A2540]">Software skills</h2>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {skills.map((skill) => (
+              <span key={skill} className="rounded-full bg-[#0A2540] px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-110 hover:bg-[#D62828]">
+                {skill}
+              </span>
+            ))}
           </div>
+        </div>
 
-          <div className="rounded-[2rem] border border-[#0A2540]/10 bg-[#FAFAFA] p-8 animate-slide-in-right hover:shadow-lg transition-shadow">
-            <h2 className="text-2xl font-bold text-[#0A2540]">AI tools</h2>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {aiTools.map((tool) => (
-                <span key={tool} className="rounded-full border border-[#D62828]/20 bg-white px-4 py-2 text-sm font-semibold text-[#D62828] transition-transform hover:scale-110 hover:bg-[#D62828] hover:text-white">
+        <div className="mt-10 rounded-[2rem] border-4 border-[#D62828] bg-gradient-to-br from-[#D62828]/10 to-[#0A2540]/10 p-8 shadow-[0_25px_80px_rgba(214,40,40,0.2)] animate-slide-in-right">
+          <h2 className="text-3xl font-black text-[#D62828] uppercase tracking-wider">AI Tools</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {aiTools.map((tool) => (
+              <div 
+                key={tool}
+                className="group animate-gradient-border rounded-2xl bg-white p-4 text-center transition-all hover:scale-105 hover:bg-[#D62828] hover:shadow-xl"
+              >
+                <span className="text-lg font-black text-[#D62828] transition-colors group-hover:text-white">
                   {tool}
                 </span>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -111,12 +127,12 @@ export default function AboutPage() {
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: "Premiere Pro Mastery", students: "500+", icon: "🎬" },
-              { title: "After Effects for Ads", students: "350+", icon: "✨" },
-              { title: "AI-Powered Editing", students: "200+", icon: "🤖" },
-              { title: "DTC Ad Strategy", students: "400+", icon: "📈" },
-              { title: "Motion Graphics", students: "180+", icon: "🎨" },
-              { title: "Sound Design", students: "250+", icon: "🔊" }
+              { title: "Premiere Pro Mastery", icon: "🎬" },
+              { title: "After Effects for Ads", icon: "✨" },
+              { title: "AI-Powered Editing", icon: "🤖" },
+              { title: "DTC Ad Strategy", icon: "📈" },
+              { title: "Motion Graphics", icon: "🎨" },
+              { title: "Sound Design", icon: "🔊" }
             ].map((course) => (
               <div 
                 key={course.title}
@@ -126,7 +142,6 @@ export default function AboutPage() {
                   <span className="text-3xl">{course.icon}</span>
                   <div>
                     <h3 className="font-bold text-[#0A2540]">{course.title}</h3>
-                    <p className="text-sm text-[#6b7280]">{course.students} students</p>
                   </div>
                 </div>
               </div>
@@ -143,20 +158,32 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="mt-10 rounded-[2rem] border border-[#0A2540]/10 bg-white p-8 shadow-[0_25px_80px_rgba(10,37,64,0.08)] animate-fade-in-up">
-          <h2 className="text-2xl font-bold text-[#0A2540]">Brands worked with</h2>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 rounded-[2rem] border-4 border-[#0A2540] bg-white p-8 shadow-[0_25px_80px_rgba(10,37,64,0.15)] animate-fade-in-up">
+          <h2 className="text-3xl font-black text-[#0A2540] uppercase tracking-wider">Brands worked with</h2>
+          <div className="mt-8 grid gap-8 sm:grid-cols-2">
             {brands.map((brand) => (
               <div 
                 key={brand.name} 
-                className="rounded-2xl border-2 border-[#0A2540]/10 bg-gradient-to-br from-white to-[#FAFAFA] p-6 transition-all hover:scale-[1.02] hover:shadow-lg hover:border-[#D62828]/30"
+                className="group animate-gradient-border rounded-3xl bg-white transition-all hover:scale-[1.03] hover:shadow-2xl"
               >
-                <div className="flex items-center gap-4">
-                  <BrandLogo name={brand.name} color={brand.color} size={64} />
-                  <div>
-                    <h3 className="text-xl font-black text-[#0A2540]">{brand.name}</h3>
-                    <p className="mt-1 text-sm text-[#6b7280]">{brand.description}</p>
+                <div className="relative h-80 w-full overflow-hidden rounded-3xl">
+                  <img 
+                    src={brand.image} 
+                    alt={brand.name}
+                    className="h-full w-full object-cover transition-transform hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 
+                      className="text-4xl font-black text-white uppercase tracking-wider"
+                      style={{ textShadow: "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000" }}
+                    >
+                      {brand.name}
+                    </h3>
                   </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-lg font-bold text-[#0A2540] transition-colors group-hover:text-[#D62828]">{brand.description}</p>
                 </div>
               </div>
             ))}
