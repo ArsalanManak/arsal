@@ -19,7 +19,7 @@ export default async function CreativesPage() {
     <SiteShell>
       <section className="bg-[#0A2540] text-white">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-6 animate-fade-in-up">
             <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#D62828]">
               Creatives
             </p>

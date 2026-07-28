@@ -5,13 +5,14 @@ import { getContentItems } from "./lib/content";
 import { getHeroImageUrl } from "../lib/hero";
 import { getYouTubeEmbedUrl } from "./lib/video-utils";
 import HeroPortrait from "./components/hero-portrait";
+import { HomeCreativesCarousel } from "./components/home-creatives-carousel";
 
 export const metadata: Metadata = {
   title: "Arsal | DTC Ads Video Editor",
   description: "Portfolio of DTC ads video editing work from Arsal, featuring intro videos, static ads, and video ad creative.",
 };
 
-const brandLogos = ["RESILIA", "RYZE", "NOVA", "PULSE"];
+const brandLogos = ["RESILIA", "RYZE"];
 
 export default async function HomePage() {
   const introVideos = await getContentItems("home_intro_videos");
@@ -22,10 +23,10 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(214,40,40,0.13),_transparent_35%),linear-gradient(135deg,_#FAFAFA_0%,_#ffffff_100%)]">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-28">
           <div className="space-y-8">
-            <div className="inline-flex items-center rounded-full border border-[#0A2540]/15 bg-white px-4 py-2 text-sm font-semibold text-[#0A2540] shadow-sm">
+            <div className="inline-flex items-center rounded-full border border-[#0A2540]/15 bg-white px-4 py-2 text-sm font-semibold text-[#0A2540] shadow-sm animate-fade-in-up">
               5+ years crafting high-converting DTC ad edits
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 animate-fade-in-up stagger-1">
               <h1 className="text-5xl font-black leading-[0.95] tracking-tight text-[#0A2540] sm:text-6xl lg:text-7xl">
                 Arsal
                 <span className="mt-3 block text-[#D62828]">DTC Ads Video Editor</span>
@@ -34,22 +35,22 @@ export default async function HomePage() {
                 I turn raw footage into scroll-stopping ad creatives that feel sharp, fast, and built for performance.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/creatives" className="rounded-full bg-[#D62828] px-6 py-3 font-semibold text-white transition hover:scale-[1.03]">
+            <div className="flex flex-wrap gap-4 animate-fade-in-up stagger-2">
+              <Link href="/creatives" className="rounded-full bg-[#D62828] px-6 py-3 font-semibold text-white transition hover:scale-[1.03] hover-bounce animate-pulse-glow">
                 View Creatives
               </Link>
-              <Link href="/courses" className="rounded-full border border-[#0A2540]/15 bg-white px-6 py-3 font-semibold text-[#0A2540] transition hover:scale-[1.03]">
+              <Link href="/courses" className="rounded-full border border-[#0A2540]/15 bg-white px-6 py-3 font-semibold text-[#0A2540] transition hover:scale-[1.03] hover-bounce">
                 View Courses
               </Link>
-              <Link href="/contact" className="rounded-full border border-[#0A2540]/15 bg-white px-6 py-3 font-semibold text-[#0A2540] transition hover:scale-[1.03]">
+              <Link href="/contact" className="rounded-full border border-[#0A2540]/15 bg-white px-6 py-3 font-semibold text-[#0A2540] transition hover:scale-[1.03] hover-bounce">
                 Contact Me
               </Link>
             </div>
-            <div className="rounded-[1.5rem] border border-[#0A2540]/10 bg-white p-6 shadow-[0_24px_80px_rgba(10,37,64,0.08)]">
+            <div className="rounded-[1.5rem] border border-[#0A2540]/10 bg-white p-6 shadow-[0_24px_80px_rgba(10,37,64,0.08)] animate-fade-in-up stagger-3">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#D62828]">Worked with</p>
               <div className="mt-4 flex flex-wrap gap-3">
                 {brandLogos.map((brand) => (
-                  <span key={brand} className="rounded-full border border-[#0A2540]/10 bg-[#FAFAFA] px-4 py-2 text-sm font-black tracking-[0.25em] text-[#0A2540]">
+                  <span key={brand} className="rounded-full border border-[#0A2540]/10 bg-[#FAFAFA] px-4 py-2 text-sm font-black tracking-[0.25em] text-[#0A2540] transition-transform hover:scale-110">
                     {brand}
                   </span>
                 ))}
@@ -116,6 +117,8 @@ export default async function HomePage() {
           })}
         </div>
       </section>
+
+      <HomeCreativesCarousel />
     </SiteShell>
   );
 }
