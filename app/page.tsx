@@ -38,6 +38,9 @@ export default async function HomePage() {
               <Link href="/creatives" className="rounded-full bg-[#D62828] px-6 py-3 font-semibold text-white transition hover:scale-[1.03]">
                 View Creatives
               </Link>
+              <Link href="/courses" className="rounded-full border border-[#0A2540]/15 bg-white px-6 py-3 font-semibold text-[#0A2540] transition hover:scale-[1.03]">
+                View Courses
+              </Link>
               <Link href="/contact" className="rounded-full border border-[#0A2540]/15 bg-white px-6 py-3 font-semibold text-[#0A2540] transition hover:scale-[1.03]">
                 Contact Me
               </Link>

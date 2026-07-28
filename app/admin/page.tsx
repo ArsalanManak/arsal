@@ -7,6 +7,7 @@ const CONTENT_TYPES: Array<{ key: ContentType; label: string }> = [
   { key: "home_intro_videos", label: "Home Intro Videos" },
   { key: "static_ads", label: "Static Ads" },
   { key: "video_ads", label: "Video Ads" },
+  { key: "courses", label: "Courses" },
 ];
 
 const PASSCODE = "arsal2026";
@@ -26,12 +27,14 @@ export default function AdminPage() {
     home_intro_videos: [],
     static_ads: [],
     video_ads: [],
+    courses: [],
   });
   const [heroUrl, setHeroUrl] = useState("");
   const [formState, setFormState] = useState<Record<ContentType, ReturnType<typeof getInitialState>>>({
     home_intro_videos: getInitialState(),
     static_ads: getInitialState(),
     video_ads: getInitialState(),
+    courses: getInitialState(),
   });
   const [activeType, setActiveType] = useState<ContentType>("home_intro_videos");
   const [editingItem, setEditingItem] = useState<ContentItem | null>(null);
@@ -189,7 +192,7 @@ export default function AdminPage() {
         <div className="mx-auto max-w-md rounded-[2rem] border border-[#0A2540]/10 bg-white p-8 shadow-[0_25px_70px_rgba(10,37,64,0.08)]">
           <h1 className="text-3xl font-black">Admin Access</h1>
           <p className="mt-3 text-sm leading-7 text-[#4b5563]">
-            Use the shared passcode to manage intro videos and creative galleries.
+            Use the shared passcode to manage intro videos, creative galleries, and course videos.
           </p>
           <form onSubmit={handleUnlock} className="mt-8 space-y-4">
             <label className="block text-sm font-semibold text-[#0A2540]">

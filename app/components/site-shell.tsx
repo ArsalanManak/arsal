@@ -8,6 +8,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/creatives", label: "Creatives" },
+  { href: "/courses", label: "Courses" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -17,18 +18,15 @@ export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <header className="sticky top-0 z-50 border-b border-[#0A2540]/10 bg-[var(--bg)]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <Link href="/" className="text-lg font-semibold tracking-[0.3em] text-[#0A2540] uppercase">
-            ARSAL
-          </Link>
-          <nav className="flex items-center gap-4 text-sm font-medium md:gap-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-6 lg:px-8">
+          <nav className="flex items-center gap-3 text-base font-semibold md:gap-8">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-full px-3 py-2 transition ${
+                  className={`rounded-full px-4 py-2 transition ${
                     isActive
                       ? "bg-[#0A2540] text-white shadow-sm"
                       : "text-[#0A2540] hover:text-[#D62828]"
